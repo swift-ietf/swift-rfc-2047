@@ -1,0 +1,11 @@
+# .github/metadata.yaml
+description: "Swift implementation of RFC 2047: MIME message header extensions for non-ASCII text (encoded words)."
+topics:
+  - standards
+  - rfc
+  - rfc-2047
+  - mime
+  - email
+homepage: "https://swift-institute.org"
+readme:
+  family: E
