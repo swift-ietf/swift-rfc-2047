@@ -3,7 +3,9 @@ import RFC_2045
 import RFC_2047
 import Testing
 
-extension RFC_2047.EncodedWord {
+enum `RFC_2047.EncodedWord Tests` {}
+
+extension `RFC_2047.EncodedWord Tests` {
 
     @Suite
     struct Test {
@@ -16,7 +18,7 @@ extension RFC_2047.EncodedWord {
     }
 }
 
-extension RFC_2047.EncodedWord.Test.Unit {
+extension `RFC_2047.EncodedWord Tests`.Test.Unit {
 
     @Test
     func `a Q encoded word decodes underscores to spaces`() throws {
@@ -55,7 +57,7 @@ extension RFC_2047.EncodedWord.Test.Unit {
     }
 }
 
-extension RFC_2047.EncodedWord.Test.`Edge Case` {
+extension `RFC_2047.EncodedWord Tests`.Test.`Edge Case` {
 
     @Test
     func `a word without its delimiters is refused`() {

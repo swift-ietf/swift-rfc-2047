@@ -3,7 +3,9 @@ import RFC_2045
 import RFC_2047
 import Testing
 
-extension RFC_2047.Text {
+enum `RFC_2047.Text Tests` {}
+
+extension `RFC_2047.Text Tests` {
 
     @Suite
     struct Test {
@@ -28,24 +30,24 @@ extension RFC_2047.Text {
     }
 }
 
-extension RFC_2047.Text.Test.Unit {
+extension `RFC_2047.Text Tests`.Test.Unit {
 
     @Test
     func `text after an encoded word keeps its space`() throws {
-        #expect(try RFC_2047.Text.Test.displayed("=?ISO-8859-1?Q?a?= b") == "a b")
+        #expect(try `RFC_2047.Text Tests`.Test.displayed("=?ISO-8859-1?Q?a?= b") == "a b")
     }
 
     @Test
     func `space between adjacent encoded words is ignored`() throws {
-        #expect(try RFC_2047.Text.Test.displayed("=?ISO-8859-1?Q?a?= =?ISO-8859-1?Q?b?=") == "ab")
-        #expect(try RFC_2047.Text.Test.displayed("=?ISO-8859-1?Q?a?=  =?ISO-8859-1?Q?b?=") == "ab")
-        #expect(try RFC_2047.Text.Test.displayed("=?ISO-8859-1?Q?a?=\r\n =?ISO-8859-1?Q?b?=") == "ab")
+        #expect(try `RFC_2047.Text Tests`.Test.displayed("=?ISO-8859-1?Q?a?= =?ISO-8859-1?Q?b?=") == "ab")
+        #expect(try `RFC_2047.Text Tests`.Test.displayed("=?ISO-8859-1?Q?a?=  =?ISO-8859-1?Q?b?=") == "ab")
+        #expect(try `RFC_2047.Text Tests`.Test.displayed("=?ISO-8859-1?Q?a?=\r\n =?ISO-8859-1?Q?b?=") == "ab")
     }
 
     @Test
     func `a space inside an encoded word is kept`() throws {
-        #expect(try RFC_2047.Text.Test.displayed("=?ISO-8859-1?Q?a_b?=") == "a b")
-        #expect(try RFC_2047.Text.Test.displayed("=?ISO-8859-1?Q?a?= =?ISO-8859-2?Q?_b?=") == "a b")
+        #expect(try `RFC_2047.Text Tests`.Test.displayed("=?ISO-8859-1?Q?a_b?=") == "a b")
+        #expect(try `RFC_2047.Text Tests`.Test.displayed("=?ISO-8859-1?Q?a?= =?ISO-8859-2?Q?_b?=") == "a b")
     }
 
     @Test
@@ -67,26 +69,26 @@ extension RFC_2047.Text.Test.Unit {
     }
 }
 
-extension RFC_2047.Text.Test.`Edge Case` {
+extension `RFC_2047.Text Tests`.Test.`Edge Case` {
 
     @Test
     func `an encoded word not delimited by space is text`() throws {
-        #expect(try RFC_2047.Text.Test.displayed("x=?US-ASCII?Q?a?=") == "x=?US-ASCII?Q?a?=")
+        #expect(try `RFC_2047.Text Tests`.Test.displayed("x=?US-ASCII?Q?a?=") == "x=?US-ASCII?Q?a?=")
     }
 
     @Test
     func `a malformed encoded word is text`() throws {
-        #expect(try RFC_2047.Text.Test.displayed("=?US-ASCII?X?a?= b") == "=?US-ASCII?X?a?= b")
+        #expect(try `RFC_2047.Text Tests`.Test.displayed("=?US-ASCII?X?a?= b") == "=?US-ASCII?X?a?= b")
     }
 
     @Test
     func `UTF-8 octets in text are kept`() throws {
-        #expect(try RFC_2047.Text.Test.displayed("Café =?US-ASCII?Q?ok?=") == "Café ok")
+        #expect(try `RFC_2047.Text Tests`.Test.displayed("Café =?US-ASCII?Q?ok?=") == "Café ok")
     }
 
     @Test
     func `leading and trailing space is kept`() throws {
-        #expect(try RFC_2047.Text.Test.displayed(" =?US-ASCII?Q?a?= ") == " a ")
+        #expect(try `RFC_2047.Text Tests`.Test.displayed(" =?US-ASCII?Q?a?= ") == " a ")
     }
 
     @Test
