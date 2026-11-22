@@ -2,7 +2,7 @@ import ASCII
 public import Byte
 import RFC_2045
 
-extension RFC_2047.EncodedWord {
+extension IETF.RFC.`2047`.EncodedWord {
 
     public init(_ string: some StringProtocol) throws(Error) {
         try self.init(ascii: string.utf8.map(Byte.init(bitPattern:)))
@@ -30,16 +30,16 @@ extension RFC_2047.EncodedWord {
         guard !charset.isEmpty, charset.allSatisfy(Self.isToken) else {
             throw .invalidCharset
         }
-        guard fields[1].count == 1, let encoding = RFC_2047.Encoding(fields[1][fields[1].startIndex]) else {
+        guard fields[1].count == 1, let encoding = IETF.RFC.`2047`.Encoding(fields[1][fields[1].startIndex]) else {
             throw .unknownEncoding
         }
         let text = Array(fields[2])
         guard !text.isEmpty, text.allSatisfy({ $0.isVisible && $0 != .questionMark }) else {
             throw .invalidText
         }
-        let name: RFC_2045.Charset
-        do throws(RFC_2045.Charset.Error) {
-            name = try RFC_2045.Charset(ascii: charset.map(\.byte))
+        let name: IETF.RFC.`2045`.Charset
+        do throws(IETF.RFC.`2045`.Charset.Error) {
+            name = try IETF.RFC.`2045`.Charset(ascii: charset.map(\.byte))
         } catch {
             throw .invalidCharset
         }

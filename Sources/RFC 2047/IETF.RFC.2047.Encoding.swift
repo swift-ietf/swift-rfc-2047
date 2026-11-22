@@ -1,4 +1,4 @@
-extension RFC_2047 {
+extension IETF.RFC.`2047` {
 
     public enum Encoding: Sendable, Hashable {
 

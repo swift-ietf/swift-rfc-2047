@@ -1,6 +1,6 @@
 public import Byte
 
-extension RFC_2047.EncodedWord {
+extension IETF.RFC.`2047`.EncodedWord {
 
     public var octets: [Byte] {
         get throws(Error) {

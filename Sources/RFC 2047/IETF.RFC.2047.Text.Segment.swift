@@ -1,11 +1,11 @@
 public import Byte
 
-extension RFC_2047.Text {
+extension IETF.RFC.`2047`.Text {
 
     public enum Segment: Sendable, Hashable {
 
         case text([Byte])
 
-        case word(RFC_2047.EncodedWord)
+        case word(IETF.RFC.`2047`.EncodedWord)
     }
 }

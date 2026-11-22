@@ -1,6 +1,6 @@
 import Byte
 
-extension RFC_2047.Text {
+extension IETF.RFC.`2047`.Text {
 
     enum Token {
 
@@ -8,11 +8,11 @@ extension RFC_2047.Text {
 
         case text([Byte])
 
-        case word(RFC_2047.EncodedWord)
+        case word(IETF.RFC.`2047`.EncodedWord)
     }
 }
 
-extension RFC_2047.Text.Token {
+extension IETF.RFC.`2047`.Text.Token {
 
     var isWord: Bool {
         switch self {

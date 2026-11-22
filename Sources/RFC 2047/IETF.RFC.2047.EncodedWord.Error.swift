@@ -1,4 +1,4 @@
-extension RFC_2047.EncodedWord {
+extension IETF.RFC.`2047`.EncodedWord {
 
     public enum Error: Swift.Error, Sendable, Equatable {
 

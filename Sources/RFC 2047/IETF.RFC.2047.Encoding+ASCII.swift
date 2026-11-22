@@ -1,6 +1,6 @@
 public import ASCII
 
-extension RFC_2047.Encoding {
+extension IETF.RFC.`2047`.Encoding {
 
     public init?(_ code: ASCII.Code) {
         switch code.underlying {

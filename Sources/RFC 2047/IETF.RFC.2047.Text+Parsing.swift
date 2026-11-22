@@ -1,10 +1,10 @@
 public import Byte
 
-extension RFC_2047.Text {
+extension IETF.RFC.`2047`.Text {
 
     public init<Bytes: Swift.Collection>(_ bytes: Bytes) where Bytes.Element == Byte {
         let tokens = Self.tokens(Array(bytes))
-        var segments: [RFC_2047.Text.Segment] = []
+        var segments: [IETF.RFC.`2047`.Text.Segment] = []
         for (index, token) in tokens.enumerated() {
             switch token {
             case .word(let word):
@@ -35,8 +35,8 @@ extension RFC_2047.Text {
     }
 
     private static func token(_ run: [Byte]) -> Token {
-        do throws(RFC_2047.EncodedWord.Error) {
-            return .word(try RFC_2047.EncodedWord(ascii: run))
+        do throws(IETF.RFC.`2047`.EncodedWord.Error) {
+            return .word(try IETF.RFC.`2047`.EncodedWord(ascii: run))
         } catch {
             return .text(run)
         }
@@ -49,7 +49,7 @@ extension RFC_2047.Text {
         }
     }
 
-    private static func merged(_ segments: [RFC_2047.Text.Segment]) -> [RFC_2047.Text.Segment] {
+    private static func merged(_ segments: [IETF.RFC.`2047`.Text.Segment]) -> [IETF.RFC.`2047`.Text.Segment] {
         segments.reduce(into: []) { result, segment in
             switch (result.last, segment) {
             case (.text(let previous)?, .text(let next)):

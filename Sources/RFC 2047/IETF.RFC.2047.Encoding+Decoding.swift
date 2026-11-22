@@ -2,12 +2,12 @@ public import ASCII
 public import Byte
 import RFC_4648
 
-extension RFC_2047.Encoding {
+extension IETF.RFC.`2047`.Encoding {
 
-    public func decode(_ text: [ASCII.Code]) throws(RFC_2047.EncodedWord.Error) -> [Byte] {
+    public func decode(_ text: [ASCII.Code]) throws(IETF.RFC.`2047`.EncodedWord.Error) -> [Byte] {
         switch self {
         case .b:
-            guard let octets = RFC_4648.Base64.decode(text) else {
+            guard let octets = IETF.RFC.`4648`.Base64.decode(text) else {
                 throw .invalidBase64
             }
             return octets
@@ -16,7 +16,7 @@ extension RFC_2047.Encoding {
         }
     }
 
-    private static func quoted(_ text: [ASCII.Code]) throws(RFC_2047.EncodedWord.Error) -> [Byte] {
+    private static func quoted(_ text: [ASCII.Code]) throws(IETF.RFC.`2047`.EncodedWord.Error) -> [Byte] {
         var octets: [Byte] = []
         octets.reserveCapacity(text.count)
         var position = text.startIndex
@@ -28,7 +28,7 @@ extension RFC_2047.Encoding {
                 position += 1
             case .equalsSign:
                 guard position + 2 < text.endIndex,
-                    let octet = RFC_4648.Base16.decode(high: text[position + 1], low: text[position + 2])
+                    let octet = IETF.RFC.`4648`.Base16.decode(high: text[position + 1], low: text[position + 2])
                 else {
                     throw .invalidQuotedOctet
                 }
